@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BettingApp.Models.Match>
+@*@model BettingApp.ViewModels.MatchesViewModel*@
 
 @{
     ViewBag.Title = "Index";
@@ -9,37 +10,72 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Match
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Odds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bets)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamHome) : @Html.DisplayFor(modelItem => item.TeamAway)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Odds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bets)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@using (Html.BeginForm("Bet", "Matches", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <th>
+                Match
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bets)
+            </th>
+            <th></th>
+        </tr>
+
+        @*@foreach (var item in Model)*@
+        @*@for (int i = 0; i < Model.Matches.Count(); i++)*@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            @Html.EditorForModel()
+
+            @*//Test
+                //@Html.EditorFor(model => item)*@
+            @*@Html.HiddenFor(modelItem => Model.Matches.ElementAt(i).ID)
+                @Html.HiddenFor(modelItem => Model.Matches.ElementAt(i).TeamHome)
+                @Html.HiddenFor(modelItem => Model.Matches.ElementAt(i).TeamAway)
+                @Html.HiddenFor(modelItem => Model.Matches.ElementAt(i).Odds)
+                @Html.HiddenFor(modelItem => Model.Matches.ElementAt(i).Bets)*@
+
+            @*@Html.HiddenFor(modelItem => Model.Matches[i].ID)
+                <tr>
+                    <td>
+                        @Html.EditorFor(modelItem => Model.Matches[i].TeamHome) : @Html.EditorFor(modelItem => Model.Matches[i].TeamAway)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => Model.Matches[i].Odds)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => Model.Matches[i].Bets)
+                    </td>
+                </tr>*@
+
+            @*<tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeamHome) : @Html.DisplayFor(modelItem => item.TeamAway)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Odds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bets)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>*@
+        }
+    </table>
+
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Bet" class="btn btn-default" />
+    </div>
 }
-
-</table>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BettingApp.Models;
+using BettingApp.ViewModels;
 
 namespace BettingApp.Controllers
 {
@@ -17,6 +18,9 @@ namespace BettingApp.Controllers
         // GET: Matches
         public ActionResult Index()
         {
+            //MatchesViewModel matchesVM = new MatchesViewModel();
+            //matchesVM.Matches = db.Matches.ToList();
+            //return View(matchesVM);
             return View(db.Matches.ToList());
         }
 
@@ -113,6 +117,21 @@ namespace BettingApp.Controllers
             db.Matches.Remove(match);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
+        public ActionResult Bet(IEnumerable<Match> matches)
+        {
+            if (ModelState.IsValid)
+            {
+                //db.Entry(match).State = EntityState.Modified;
+                //db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            //return View(match);
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)
