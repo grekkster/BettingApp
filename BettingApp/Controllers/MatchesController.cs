@@ -119,27 +119,7 @@ namespace BettingApp.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
-        ////public ActionResult Bet(IEnumerable<Match> matches)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        foreach (Match match in matches)
-        //        {
-        //            db.Entry(match).State = EntityState.Modified;
-        //            db.SaveChanges();
-        //        }
-
-        //        //db.Entry(match).State = EntityState.Modified;;
-        //        //db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    //return View(match);
-        //    return View("Index");
-        //}
-
+        // POST: Matches
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
