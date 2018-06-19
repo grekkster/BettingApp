@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -26,5 +27,10 @@ namespace BettingApp.Models
         public string TeamAway { get; set; }
         public Odds Odds { get; set; }
         public Bets Bets { get; set; }
+    }
+
+    public class BettingDBContext : DbContext
+    {
+        public DbSet<Match> Matches { get; set; }
     }
 }

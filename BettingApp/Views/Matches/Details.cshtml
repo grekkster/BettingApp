@@ -1,0 +1,50 @@
+﻿@model BettingApp.Models.Match
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Match</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamHome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamHome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamAway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamAway)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bets)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

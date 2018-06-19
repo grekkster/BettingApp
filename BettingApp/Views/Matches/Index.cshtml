@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BettingApp.Models.Match>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamHome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamAway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Odds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bets)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamHome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamAway)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Odds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bets)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
