@@ -119,19 +119,45 @@ namespace BettingApp.Controllers
             return RedirectToAction("Index");
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
+        ////public ActionResult Bet(IEnumerable<Match> matches)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        foreach (Match match in matches)
+        //        {
+        //            db.Entry(match).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //        }
+
+        //        //db.Entry(match).State = EntityState.Modified;;
+        //        //db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    //return View(match);
+        //    return View("Index");
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
-        public ActionResult Bet(IEnumerable<Match> matches)
+        public ActionResult Bet([Bind(Include = "ID,TeamHome,TeamAway,Odds,Bets")] IEnumerable<Match> matches)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(match).State = EntityState.Modified;
-                //db.SaveChanges();
-                return RedirectToAction("Index");
+                foreach (Match match in matches)
+                {
+                    Match matchToBet = db.Matches.Find(match.ID);
+
+                    if ((match != null) && (matchToBet.Bets != match.Bets))
+                    {
+                        matchToBet.Bets = match.Bets;
+                        db.SaveChanges();
+                    }
+                }                
             }
-            //return View(match);
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
