@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TeamHome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamAway)
+            Match
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Odds)
@@ -29,10 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TeamHome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamAway)
+            @Html.DisplayFor(modelItem => item.TeamHome) : @Html.DisplayFor(modelItem => item.TeamAway)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Odds)

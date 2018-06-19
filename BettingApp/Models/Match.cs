@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,11 @@ namespace BettingApp.Models
 {
     public class Odds
     {
+        [Range(0, 999.99)]
         public decimal Home { get; set; }
+        [Range(0, 999.99)]
         public decimal Draw { get; set; }
+        [Range(0, 999.99)]
         public decimal Away { get; set; }
     }
 
