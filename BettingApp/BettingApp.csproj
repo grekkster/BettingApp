@@ -208,7 +208,6 @@
     <Content Include="Views\Matches\Edit.cshtml" />
     <Content Include="Views\Matches\Index.cshtml" />
     <Content Include="Views\Matches\EditorTemplates\Match.cshtml" />
-    <Content Include="Views\Matches\EditorTemplates\Match – kopie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

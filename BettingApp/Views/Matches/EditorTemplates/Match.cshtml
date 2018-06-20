@@ -1,92 +1,64 @@
 ﻿@model BettingApp.Models.Match
 
 <tr>
-    <td> TODO smazat - Home pro test: @Html.DisplayFor(model => model.Bets.Home)</td>
-    // input name="" data-val checked value=""
-
     @Html.HiddenFor(model => model.ID)
     @Html.HiddenFor(model => model.TeamHome)
     @Html.HiddenFor(model => model.TeamAway)
     @Html.HiddenFor(model => model.Odds.Home)
     @Html.HiddenFor(model => model.Odds.Draw)
     @Html.HiddenFor(model => model.Odds.Away)
+
+    @{
+        var betHomeClass = Model.Bets.Home ? "btn btn-primary active" : "btn btn-primary";
+        var betDrawClass = Model.Bets.Draw ? "btn btn-primary active" : "btn btn-primary";
+        var betAwayClass = Model.Bets.Away ? "btn btn-primary active" : "btn btn-primary";
+    }
+
     <td>
-        @Html.DisplayFor(model => model.TeamHome) : @Html.DisplayFor(model => model.TeamAway)
+        <label>
+            @Html.DisplayFor(model => model.TeamHome) : @Html.DisplayFor(model => model.TeamAway)
+        </label>
     </td>
+
+    @*<td>
+            TODO TOHLE FUGUJE AKORAT PRVNI CHECK NIC NEUDĚLÁ - je to invertovaný?
+            https://getbootstrap.com/docs/4.1/components/buttons/ - Checkbox and radio buttons
+            <div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
+                    @Model.Odds.Home
+                </label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
+
+            <div class="btn-group-toggle" data-toggle="buttons">
+                <label class="@betHomeClass">
+                    @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
+                    @Model.Odds.Home
+                </label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
+        </td>*@
+
     <td>
-        @{
-            // TODO pujde i jinak, urcite rovnou v atributu/pres css/js bootstrap
-            var betCheckBoxClass = Model.Bets.Home ? "checked" : "unchecked";
-            // + priradit do editorFor/primo vlastniho prvku pro Bet
-        }
-
-        @Html.DisplayFor(model => model.Odds.Home)
-        @*@Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })*@
-        @Html.EditorFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
-
-        @*<label class="btn btn-primary active" aria-pressed="@Model.Bets.Home" data-toggle="button">
+        <label class="@betHomeClass">
             @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
             @Model.Odds.Home
         </label>
-        @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })*@
-
-        !!! nefunguje - není binding, chybí NAME=[0].Bets.Home
-
-        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" checked="@Model.Bets.Home" value="@Model.Bets.Home" class = "form-control"/>*@
-        @*<input type="checkbox" name="@Model.Bets.Home" checked="@Model.Bets.Home" value="@Model.Bets.Home" class ="form-control" data-val="@Model.Bets.Home"/>*@
-        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" checked="@(Model.Bets.Home ? "checked" : "")" value="@Model.Bets.Home" class="form-control" />*@ // ERR porad ukazuje true i kdyz nema byt - chechked je špatně - dole funguje
-        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" @(Model.Bets.Home ? "checked='checked'" : "") value="@Model.Bets.Home" class="form-control" />*@
-
-        @*<button type="button" class="btn btn-default @(Model.Bets.Home ? "active" : "")" value="@Model.Bets.Home" name="MyOptions">@Model.Odds.Home</button>*@
-
-        @*<div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-success active">
-                <input type="checkbox" checked autocomplete="off" value="@Model.Bets.Home">@Model.Odds.Home
-            </label>
-        </div>*@
-
-        @*<div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-success active">
-                <input type="checkbox" checked="@Model.Bets.Home" value="@Model.Bets.Home" name="@Model.Bets.Home">@Model.Odds.Home
-            </label>
-        </div>*@
-
-        @*<div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                <input type="checkbox" checked="@Model.Bets.Home" value="@Model.Bets.Home">@Model.Odds.Home
-            </label>
-        </div>*@
-
-        <span class="button-checkbox">
-            <button type="button" class="btn" data-color="primary">Unchecked</button>
-            <input type="checkbox" class="hidden" />
-        </span>
-
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                <input type="checkbox" checked autocomplete="off"> Checkbox 1 (pre-checked)
-            </label>
-            <label class="btn btn-primary">
-                <input type="checkbox" autocomplete="off"> Checkbox 2
-            </label>
-            <label class="btn btn-primary">
-                <input type="checkbox" autocomplete="off"> Checkbox 3
-            </label>
-        </div>
-
-        @*<label class="btn btn-primary">
-            @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" })
-            @Model.Odds.Home
-        </label>*@
+        @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
     </td>
     <td>
-        @Html.DisplayFor(model => model.Odds.Draw)
-        @Html.EditorFor(model => model.Bets.Draw, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="@betDrawClass">
+            @Html.CheckBoxFor(model => model.Bets.Draw, new { htmlAttributes = new { @class = "form-control" } })
+            @Model.Odds.Draw
+        </label>
         @Html.ValidationMessageFor(model => model.Bets.Draw, "", new { @class = "text-danger" })
     </td>
     <td>
-        @Html.DisplayFor(model => model.Odds.Away)
-        @Html.EditorFor(model => model.Bets.Away, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="@betAwayClass">
+            @Html.CheckBoxFor(model => model.Bets.Away, new { htmlAttributes = new { @class = "form-control" } })
+            @Model.Odds.Away
+        </label>
         @Html.ValidationMessageFor(model => model.Bets.Away, "", new { @class = "text-danger" })
     </td>
 </tr>

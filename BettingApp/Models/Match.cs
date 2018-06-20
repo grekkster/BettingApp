@@ -10,11 +10,11 @@ namespace BettingApp.Models
     public class Odds
     {
         [Range(0, 999.99)]
-        public decimal Home { get; set; }
+        public double Home { get; set; }
         [Range(0, 999.99)]
-        public decimal Draw { get; set; }
+        public double Draw { get; set; }
         [Range(0, 999.99)]
-        public decimal Away { get; set; }
+        public double Away { get; set; }
     }
 
     public class Bets

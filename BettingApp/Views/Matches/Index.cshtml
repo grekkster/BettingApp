@@ -1,39 +1,34 @@
 ﻿@model IEnumerable<BettingApp.Models.Match>
-@*@model BettingApp.ViewModels.MatchesViewModel*@
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Matches</h2>
 
 @using (Html.BeginForm("Bet", "Matches", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-<table class="table">
-    <tr>
-        <th>
-            Match
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Odds.Home)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Odds.Draw)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Odds.Away)
-        </th>
-    </tr>
-    @Html.EditorForModel()
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                Match
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds.Home)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds.Draw)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds.Away)
+            </th>
+        </tr>
+        @Html.EditorForModel()
+    </table>
 
     <div class="form-actions no-color">
-        <input type="submit" value="Bet" class="btn btn-default" />
+        <input type="submit" value="Place bets" class="btn btn-primary" />
     </div>
 }
