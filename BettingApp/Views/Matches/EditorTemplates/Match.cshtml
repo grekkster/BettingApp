@@ -1,6 +1,9 @@
 ﻿@model BettingApp.Models.Match
 
 <tr>
+    <td> TODO smazat - Home pro test: @Html.DisplayFor(model => model.Bets.Home)</td>
+    // input name="" data-val checked value=""
+
     @Html.HiddenFor(model => model.ID)
     @Html.HiddenFor(model => model.TeamHome)
     @Html.HiddenFor(model => model.TeamAway)
@@ -11,9 +14,70 @@
         @Html.DisplayFor(model => model.TeamHome) : @Html.DisplayFor(model => model.TeamAway)
     </td>
     <td>
+        @{
+            // TODO pujde i jinak, urcite rovnou v atributu/pres css/js bootstrap
+            var betCheckBoxClass = Model.Bets.Home ? "checked" : "unchecked";
+            // + priradit do editorFor/primo vlastniho prvku pro Bet
+        }
+
         @Html.DisplayFor(model => model.Odds.Home)
+        @*@Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })*@
         @Html.EditorFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
+
+        @*<label class="btn btn-primary active" aria-pressed="@Model.Bets.Home" data-toggle="button">
+            @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
+            @Model.Odds.Home
+        </label>
+        @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })*@
+
+        !!! nefunguje - není binding, chybí NAME=[0].Bets.Home
+
+        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" checked="@Model.Bets.Home" value="@Model.Bets.Home" class = "form-control"/>*@
+        @*<input type="checkbox" name="@Model.Bets.Home" checked="@Model.Bets.Home" value="@Model.Bets.Home" class ="form-control" data-val="@Model.Bets.Home"/>*@
+        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" checked="@(Model.Bets.Home ? "checked" : "")" value="@Model.Bets.Home" class="form-control" />*@ // ERR porad ukazuje true i kdyz nema byt - chechked je špatně - dole funguje
+        @*<input type="checkbox" data-toggle="toggle" name="@Model.Bets.Home" @(Model.Bets.Home ? "checked='checked'" : "") value="@Model.Bets.Home" class="form-control" />*@
+
+        @*<button type="button" class="btn btn-default @(Model.Bets.Home ? "active" : "")" value="@Model.Bets.Home" name="MyOptions">@Model.Odds.Home</button>*@
+
+        @*<div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-success active">
+                <input type="checkbox" checked autocomplete="off" value="@Model.Bets.Home">@Model.Odds.Home
+            </label>
+        </div>*@
+
+        @*<div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-success active">
+                <input type="checkbox" checked="@Model.Bets.Home" value="@Model.Bets.Home" name="@Model.Bets.Home">@Model.Odds.Home
+            </label>
+        </div>*@
+
+        @*<div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary active">
+                <input type="checkbox" checked="@Model.Bets.Home" value="@Model.Bets.Home">@Model.Odds.Home
+            </label>
+        </div>*@
+
+        <span class="button-checkbox">
+            <button type="button" class="btn" data-color="primary">Unchecked</button>
+            <input type="checkbox" class="hidden" />
+        </span>
+
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+                <input type="checkbox" checked autocomplete="off"> Checkbox 1 (pre-checked)
+            </label>
+            <label class="btn btn-primary">
+                <input type="checkbox" autocomplete="off"> Checkbox 2
+            </label>
+            <label class="btn btn-primary">
+                <input type="checkbox" autocomplete="off"> Checkbox 3
+            </label>
+        </div>
+
+        @*<label class="btn btn-primary">
+            @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" })
+            @Model.Odds.Home
+        </label>*@
     </td>
     <td>
         @Html.DisplayFor(model => model.Odds.Draw)
