@@ -9,9 +9,9 @@
     @Html.HiddenFor(model => model.Odds.Away)
 
     @{
-        var betHomeClass = Model.Bets.Home ? "btn btn-primary active" : "btn btn-primary";
-        var betDrawClass = Model.Bets.Draw ? "btn btn-primary active" : "btn btn-primary";
-        var betAwayClass = Model.Bets.Away ? "btn btn-primary active" : "btn btn-primary";
+        var betHomeClass = Model.Bets.Home ? "btn-sm btn-primary active" : "btn-sm btn-primary";
+        var betDrawClass = Model.Bets.Draw ? "btn-sm btn-primary active" : "btn-sm btn-primary";
+        var betAwayClass = Model.Bets.Away ? "btn-sm btn-primary active" : "btn-sm btn-primary";
     }
 
     <td>
@@ -19,27 +19,6 @@
             @Html.DisplayFor(model => model.TeamHome) : @Html.DisplayFor(model => model.TeamAway)
         </label>
     </td>
-
-    @*<td>
-            TODO TOHLE FUGUJE AKORAT PRVNI CHECK NIC NEUDĚLÁ - je to invertovaný?
-            https://getbootstrap.com/docs/4.1/components/buttons/ - Checkbox and radio buttons
-            <div class="btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
-                    @Model.Odds.Home
-                </label>
-            </div>
-            @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
-
-            <div class="btn-group-toggle" data-toggle="buttons">
-                <label class="@betHomeClass">
-                    @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
-                    @Model.Odds.Home
-                </label>
-            </div>
-            @Html.ValidationMessageFor(model => model.Bets.Home, "", new { @class = "text-danger" })
-        </td>*@
-
     <td>
         <label class="@betHomeClass">
             @Html.CheckBoxFor(model => model.Bets.Home, new { htmlAttributes = new { @class = "form-control" } })
@@ -60,6 +39,11 @@
             @Model.Odds.Away
         </label>
         @Html.ValidationMessageFor(model => model.Bets.Away, "", new { @class = "text-danger" })
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
     </td>
 </tr>
 

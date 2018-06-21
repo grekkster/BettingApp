@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BettingApp.Models;
-using BettingApp.ViewModels;
 
 namespace BettingApp.Controllers
 {
@@ -18,9 +17,6 @@ namespace BettingApp.Controllers
         // GET: Matches
         public ActionResult Index()
         {
-            //MatchesViewModel matchesVM = new MatchesViewModel();
-            //matchesVM.Matches = db.Matches.ToList();
-            //return View(matchesVM);
             return View(db.Matches.ToList());
         }
 
